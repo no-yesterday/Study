@@ -44,15 +44,16 @@ public class CustomerService {
                 goOneHome();
                 break;
             case "2":
-                System.out.println("取款");
+                //取款
+                goGetMoneyHome();
                 goOneHome();
                 break;
             case "3":
-                System.out.println("转账");
+                doTruanMoney();
                 goOneHome();
                 break;
             case "4":
-                System.out.println("存款");
+                doSaveMoney();
                 goOneHome();
                 break;
             case "5":
@@ -60,6 +61,46 @@ public class CustomerService {
                 goOneHome();
                 break;
         }
+    }
+
+    private void doSaveMoney() {
+        //存款
+        //1.提示界面
+        System.out.println("请输入你要存的钱数：");
+        //2.scanner 接收钱数
+        Scanner scanner = new Scanner(System.in);
+        String moneyIn = scanner.nextLine();
+        Double moneyInInt = Double.valueOf(moneyIn);
+        double newMoney = currentCustomer.getMoney()+moneyInInt;//ctrl + alt + v 快速返回数据类型
+        //更新当前用户的余额
+        currentCustomer.setMoney(newMoney);
+        System.out.println("您的账户余额是：" + newMoney);
+    }
+
+
+    private void doTruanMoney() {//转账的方法
+        System.out.println("输入对方账号：");
+        Scanner scanner = new Scanner(System.in);
+        String otherAccount = scanner.nextLine();
+        System.out.println("输入转账金额：");
+        String otherMoney = scanner.nextLine();
+        //计算，自己的钱 - otherMoney ，别人的钱 + otherMoney
+        Double otherMoneyInt = Double.parseDouble(otherMoney);
+        double currentMoney = currentCustomer.getMoney()-otherMoneyInt;//自己被减去otherMoney后的钱
+        //别人加钱 根据别人的账户查询出别人的余额，查出别人的余额后，修改别人的余额
+        //因为所有人都在cuntomerList这个集合中，那么遍历这个集合
+        Customer other = null;
+        for (Customer customer : customerList) {
+            //如果customer.getAcount等于otherAcount，那么这个人就选出来了
+            if (customer.getAccount().equals(otherAccount)) {
+                other = customer;
+            }
+        }
+        double otherOneMoney = other.getMoney()+otherMoneyInt;//别人的余额
+
+        //自己和别人都更新一下钱数
+        currentCustomer.setMoney(currentMoney);
+        other.setMoney(otherOneMoney);//注意，有问题，不能创建对象了
     }
 
     private void doSelectMoney() {
@@ -76,4 +117,19 @@ public class CustomerService {
         System.out.println("option = " + option);
         oneOption(option);
     }
+    private void goGetMoneyHome(){
+        TextUitl.getMoneyUI();
+        // 1. 让客户输入
+        Scanner scanner = new Scanner(System.in);
+        String  numIn = scanner.nextLine();
+        if (numIn.equals("1")){
+            // 那么 取款100 那么就应该 让 顾客的 钱 -100
+            double money = currentCustomer.getMoney();
+            money=money-100;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+    }
+
 }
