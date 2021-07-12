@@ -1,9 +1,8 @@
 package com.liu.controller;
 
-import com.liu.bean.Customer;
-import com.liu.bean.CustomerData;
 import com.liu.bean.Manager;
 import com.liu.bean.ManagerData;
+import com.liu.service.CustomerService;
 import com.liu.uitl.TextUitl;
 
 import java.util.List;
@@ -16,17 +15,19 @@ public class AtmMain {
 
     private static String cardid;
     private static String cardpwd;
+    private static CustomerService customerService;
 
     public static void main(String[] args) {
+        customerService = new CustomerService();
         //测试管理员类的数据
         ManagerData managerData = ManagerData.getInstance();
         List<Manager> managerList = managerData.getManagerList();
         for (Manager manager : managerList) {
             System.out.println("manager = " + manager);
         }
-        //测试客户类的数据
-        CustomerData customerData = CustomerData.getInstance();
-        List<Customer> customerList = customerData.getCustomerList();
+//        //测试客户类的数据
+//        CustomerData customerData = CustomerData.getInstance();
+//        List<Customer> customerList = customerData.getCustomerList();
 //        for (Customer customer : customerList) {
 //            System.out.println("customer = " + customer);
 //        }
@@ -49,7 +50,7 @@ public class AtmMain {
     private static void doCheckPassword(String cardid,String cardpwd) {
         //先校验身份，判断cardid的长度
         if (cardid.length() == 8) {//卡号8位是客户
-
+            customerService.checkPwd(cardid,cardpwd);
         }
         if (cardid.length() == 2) {//卡号2位是客户
 

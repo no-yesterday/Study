@@ -15,4 +15,12 @@ public class TextUitl {
         System.out.println("********************");
         System.out.println("请输入卡号：");
     }
+    public static void oneLeveOption(){
+        System.out.println("****************************");
+        System.out.println("****请输入你想要操作的类型：****");
+        System.out.println("****1.查询余额      2.取款****");
+        System.out.println("****3.转账         4.存款****");
+        System.out.println("****5.退卡              ****");
+        System.out.println("****************************");
+    }
 }
