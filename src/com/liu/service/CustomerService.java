@@ -57,9 +57,22 @@ public class CustomerService {
                 goOneHome();
                 break;
             case "5":
-                System.out.println("退卡");
+                doQuitCard();
                 goOneHome();
                 break;
+        }
+    }
+
+    private void doQuitCard() {
+        //退卡
+        System.out.println("是否确定退卡yes/no[Y/N]");
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        if (s.equalsIgnoreCase("y")) {
+            TextUitl.welcome();
+        }
+        if (s.equalsIgnoreCase("n")) {
+            TextUitl.oneLeveOption();
         }
     }
 
