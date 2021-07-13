@@ -35,16 +35,15 @@ public class CustomerService {
     }
 
     private void oneOption(String option) {
+        //一级选择界面
         switch (option){
             case "1":
-                System.out.println("余额查询");
                 //查询余额
                 doSelectMoney();
                 //查询完余额后 回退到一级选项中
                 goOneHome();
                 break;
             case "2":
-                //取款
                 goGetMoneyHome();
                 goOneHome();
                 break;
@@ -58,7 +57,6 @@ public class CustomerService {
                 break;
             case "5":
                 doQuitCard();
-                goOneHome();
                 break;
         }
     }
@@ -123,7 +121,7 @@ public class CustomerService {
     }
 
     private void goOneHome(){
-        TextUitl.oneLeveOption();//界面
+        TextUitl.oneLeveOption();//一级界面
         //再次输入 获取
         Scanner scanner = new Scanner(System.in);
         String option = scanner.nextLine();
@@ -135,10 +133,63 @@ public class CustomerService {
         // 1. 让客户输入
         Scanner scanner = new Scanner(System.in);
         String  numIn = scanner.nextLine();
+        //取款界面1-7
+        getMoneyMoney(numIn);
+    }
+
+    private void getMoneyMoney(String numIn) {
         if (numIn.equals("1")){
             // 那么 取款100 那么就应该 让 顾客的 钱 -100
             double money = currentCustomer.getMoney();
             money=money-100;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("2")){
+            // 那么 取款200 那么就应该 让 顾客的 钱 -200
+            double money = currentCustomer.getMoney();
+            money=money-200;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("3")){
+            // 那么 取款300 那么就应该 让 顾客的 钱 -300
+            double money = currentCustomer.getMoney();
+            money=money-300;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("4")){
+            // 那么 取款500 那么就应该 让 顾客的 钱 -500
+            double money = currentCustomer.getMoney();
+            money=money-500;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("5")){
+            // 那么 取款800 那么就应该 让 顾客的 钱 -800
+            double money = currentCustomer.getMoney();
+            money=money-800;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("6")){
+            // 那么 取款1000 那么就应该 让 顾客的 钱 -1000
+            double money = currentCustomer.getMoney();
+            money=money-1000;
+            System.out.println("您的余额是: " + money);
+            // 取完款项之后,  更新 原有的 存款
+            currentCustomer.setMoney(money);
+        }
+        if (numIn.equals("7")){
+            // 那么 取款2000 那么就应该 让 顾客的 钱 -2000
+            double money = currentCustomer.getMoney();
+            money=money-2000;
             System.out.println("您的余额是: " + money);
             // 取完款项之后,  更新 原有的 存款
             currentCustomer.setMoney(money);
